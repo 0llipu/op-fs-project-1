@@ -3,7 +3,7 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
-	font-family: "Montserrat", sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 /******************** NAVIGATION ********************/
 nav {
@@ -41,7 +41,7 @@ nav {
 	text-transform: uppercase;
 }
 .nav-links a::before {
-	content: "";
+	content: '';
 	display: block;
 	height: 3px;
 	background: rgb(255, 255, 255);
@@ -277,8 +277,8 @@ form {
 	padding: 37.5px;
 }
 
-input[type="text"],
-[type="email"],
+input[type='text'],
+[type='email'],
 select,
 textarea {
 	background: none;
@@ -295,8 +295,8 @@ textarea {
 	transition: all 0.3s;
 }
 
-input[type="text"]:focus,
-[type="email"]:focus,
+input[type='text']:focus,
+[type='email']:focus,
 textarea:focus {
 	outline: none;
 	padding: 0 0 0.5em 0;
@@ -356,8 +356,8 @@ textarea {
 		width: 53px;
 	}
 
-	input[type="text"],
-	[type="email"],
+	input[type='text'],
+	[type='email'],
 	select,
 	textarea {
 		font-size: 0.875em;
@@ -378,9 +378,9 @@ textarea {
 	grid-template-columns: repeat(3, 1fr);
 	padding-top: 1em;
 	grid-template-areas:
-		"ab1 ab2 ab3"
-		"abtxt1 abtxt1 abtxt1"
-		"abtxt2 abtxt2 abtxt2";
+		'ab1 ab2 ab3'
+		'abtxt1 abtxt1 abtxt1'
+		'abtxt2 abtxt2 abtxt2';
 }
 
 .ab-container img {
@@ -411,8 +411,8 @@ textarea {
 	.main-about {
 		grid-template-columns: repeat(3, 1fr);
 		grid-template-areas:
-			"ab1 abtxt1 abtxt1"
-			"abtxt2 abtxt2 ab2";
+			'ab1 abtxt1 abtxt1'
+			'abtxt2 abtxt2 ab2';
 	}
 	.ab-photo3 {
 		display: none;
@@ -425,9 +425,9 @@ textarea {
 	.main-about {
 		grid-template-columns: repeat(1, 1fr);
 		grid-template-areas:
-			"ab1"
-			"abtxt1"
-			"abtxt2";
+			'ab1'
+			'abtxt1'
+			'abtxt2';
 	}
 	.ab-photo2 {
 		display: none;
@@ -460,8 +460,8 @@ textarea {
 	grid-template-columns: repeat(3, 1fr);
 	padding-top: 1em;
 	grid-template-areas:
-		"bike1 bike2 bike3"
-		"biketxt1 biketxt2 biketxt3";
+		'bike1 bike2 bike3'
+		'biketxt1 biketxt2 biketxt3';
 }
 
 .bike-container img {
@@ -501,9 +501,9 @@ textarea {
 		grid-template-columns: repeat(4, 1fr);
 		grid-gap: 2em;
 		grid-template-areas:
-			"bike1 bike1 biketxt1 biketxt1"
-			"bike2 bike2  biketxt2 biketxt2"
-			"bike3 bike3 biketxt3 biketxt3";
+			'bike1 bike1 biketxt1 biketxt1'
+			'bike2 bike2  biketxt2 biketxt2'
+			'bike3 bike3 biketxt3 biketxt3';
 	}
 	.bike-container p {
 		font-size: 0.875em;
@@ -516,12 +516,12 @@ textarea {
 	.main-bike {
 		grid-template-columns: repeat(1, 1fr);
 		grid-template-areas:
-			"bike1"
-			"biketxt1"
-			"bike2"
-			"biketxt2"
-			"bike3"
-			"biketxt3";
+			'bike1'
+			'biketxt1'
+			'bike2'
+			'biketxt2'
+			'bike3'
+			'biketxt3';
 	}
 	.bike-container p {
 		font-size: 0.865em;
@@ -550,8 +550,8 @@ textarea {
 	grid-template-columns: repeat(3, 1fr);
 	padding-top: 1em;
 	grid-template-areas:
-		"indextxt1 indextxt2 indextxt3"
-		"index1 index2 index3";
+		'indextxt1 indextxt2 indextxt3'
+		'index1 index2 index3';
 }
 
 .index-container img {
@@ -590,7 +590,7 @@ textarea {
 	text-shadow: 1px 1px rgb(182, 182, 182);
 }
 .main-index a::before {
-	content: "";
+	content: '';
 	display: block;
 	height: 2px;
 	background: rgb(41, 0, 79);
@@ -618,9 +618,9 @@ textarea {
 		grid-template-columns: repeat(4, 1fr);
 		gap: 2em;
 		grid-template-areas:
-			"indextxt1 indextxt1 index1 index1 "
-			"indextxt2 indextxt2 index2 index2 "
-			"indextxt3 indextxt3 index3 index3 ";
+			'indextxt1 indextxt1 index1 index1 '
+			'indextxt2 indextxt2 index2 index2 '
+			'indextxt3 indextxt3 index3 index3 ';
 	}
 	.index-container p {
 		font-size: 0.875em;
@@ -633,12 +633,12 @@ textarea {
 	.main-index {
 		grid-template-columns: repeat(1, 1fr);
 		grid-template-areas:
-			"indextxt1"
-			"index1"
-			"indextxt2"
-			"index2"
-			"indextxt3"
-			"index3";
+			'indextxt1'
+			'index1'
+			'indextxt2'
+			'index2'
+			'indextxt3'
+			'index3';
 	}
 	.index-container p {
 		font-size: 0.865em;
