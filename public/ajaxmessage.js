@@ -1,8 +1,14 @@
+// Listen that DOMContent is loaded and then initiate functions //
+
 document.addEventListener('DOMContentLoaded', function () {
+	// Function to fetch Guestbook entries
 	function fetchGuestbookData() {
 		// Make an AJAX GET request to the server
 		fetch('/ajaxGuestbook')
-			.then((response) => response.json()) // Parse response as JSON
+			// Parse response as JSON
+			.then((response) => response.json())
+
+			// Generate entries to htmlContent variable
 			.then((entries) => {
 				let htmlContent =
 					'<table class="table table-bordered table-striped">' +
@@ -29,26 +35,39 @@ document.addEventListener('DOMContentLoaded', function () {
 				}
 				htmlContent += '</table>';
 
+				// Render htmlContent to the #guestbook-table div
 				document.getElementById('guestbook-table').innerHTML =
 					htmlContent;
 			})
+
+			// Catch errors and inform of them in the console
 			.catch((error) => {
-				console.error('Error:', error);
+				console.error(
+					'Error when generating the guestbook data: ',
+					error
+				);
 			});
 	}
-	fetchGuestbookData(); // Fetch guestbook data after form submission is successful
 
+	// Fetch guestbook data after form submission is successful
+	fetchGuestbookData();
+
+	// Initiate ajaxForm variable, attach the ajaxmessage-form to it
 	ajaxForm = document.getElementById('ajaxmessage-form');
 
+	// Listen to the ajaxForm submit button
 	ajaxForm.addEventListener('submit', function (event) {
+		// Prevent default operations for the submit button
 		event.preventDefault();
 
+		// Generate date string to a variable
 		const date =
 			new Date().getDate() +
 			'/' +
 			(1 + parseInt(new Date().getMonth())) +
 			'/' +
 			new Date().getFullYear();
+
 		// Create an object to hold form data
 		const formData = {
 			username: document.getElementById('username').value,
@@ -57,35 +76,43 @@ document.addEventListener('DOMContentLoaded', function () {
 			date: date,
 		};
 
+		// Check for empty inputs and do not allow them to happen
 		if (username === '' || country === '' || message === '') {
 			alert('Please fill in all fields');
 			return;
 		} else {
-			// Convert form data object to JSON
-			const jsonData = JSON.stringify(formData);
+			// Convert entry from the form data object to JSON
+			const entryData = JSON.stringify(formData);
 
+			// Fetch the submitAjaxMessage route and post the JSON entry data in to it
 			fetch('/submitAjaxMessage', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: jsonData,
+				body: entryData,
 			})
+				// Check for response and show error if failed submit
 				.then((response) => {
 					if (!response.ok) {
-						throw new Error('Failed to submit form');
+						throw new Error('Failed to submit ajax message form');
 					}
 					return response.json();
 				})
+				// If response OK then show message in console.log
 				.then((data) => {
 					console.log('Form submitted successfully:', data);
-					// Here you can handle the response from the backend, such as displaying a success message to the user
-					fetchGuestbookData(); // Fetch guestbook data after form submission is successful
+
+					// Then run the fetchGuestbookData function and reset the ajax message form
+					fetchGuestbookData();
 					ajaxForm.reset();
 				})
+				// Catch errors and inform about them
 				.catch((error) => {
-					console.error('Error:', error.message);
-					// Here you can handle errors, such as displaying an error message to the user
+					console.error(
+						'Error, could not submit the ajax message form:',
+						error.message
+					);
 				});
 		}
 	});

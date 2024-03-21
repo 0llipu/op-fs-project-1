@@ -1,4 +1,4 @@
-/******************** BASIC ********************/
+/******************** BASIC STYLING ********************/
 * {
 	margin: 0px;
 	padding: 0px;
@@ -61,7 +61,7 @@ body::-webkit-scrollbar {
 	text-shadow: 1px 1px 2px var(--shadow);
 }
 
-/******************** NAVIGATION ********************/
+/******************** NAVIGATION STYLING ********************/
 nav {
 	display: flex;
 	justify-content: center;
@@ -93,6 +93,7 @@ nav {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	line-height: 1;
 }
 .nav-links a {
 	color: var(--text-color);
@@ -207,7 +208,7 @@ nav {
 	transform: rotate(45deg) translate(-4px, -6px);
 }
 
-/******************** HEADER ********************/
+/******************** HEADER STYLING ********************/
 
 .x-header h3 {
 	font-size: 1.6em;
@@ -219,12 +220,13 @@ nav {
 	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
+	line-height: 1;
 }
 .x-header span {
 	font-weight: 100;
 }
 
-/******************** FOOTER ********************/
+/******************** FOOTER STYLING ********************/
 .footer {
 	background: var(--primary);
 	height: 2rem;
@@ -240,7 +242,7 @@ main {
 	padding-bottom: 30px;
 	padding-top: 7vh;
 }
-.footer h5 {
+.footer-text {
 	color: var(--text-color);
 	font-size: 10px;
 	text-align: center;
@@ -582,7 +584,7 @@ main {
 	}
 }
 
-/******************** CONTACT PAGE ********************/
+/******************** CONTACT PAGE, NEW MESSAGE, AJAX MESSAGE PAGE STYLING ********************/
 
 .form-container {
 	margin-left: auto;
@@ -732,7 +734,7 @@ textarea {
 	}
 }
 
-/********** WEATHER APP **********/
+/********** WEATHER APP STYLING **********/
 
 /* Universal styling for body */
 
@@ -760,13 +762,12 @@ textarea {
 
 /* Container styling */
 
-.container {
+.wa-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 5rem;
 	width: 30%;
 	padding: 1rem;
 	min-width: 300px;
@@ -806,7 +807,6 @@ textarea {
 .input-style[type='text'],
 select,
 textarea {
-	color: var(--text-color);
 	margin: 0.25em 0 0.25em 0;
 	padding: 0 0 0.5em 0;
 	text-transform: uppercase;
@@ -930,7 +930,7 @@ textarea {
 	}
 }
 
-/******************** GUESTBOOK ********************/
+/******************** GUESTBOOK PAGE STYLING ********************/
 
 .guestbook {
 	margin-left: auto;
@@ -963,155 +963,8 @@ textarea {
 	word-wrap: break-word;
 }
 
-/******************** NEW MESSAGE ********************/
+/************************ ERROR PAGE STYLING ***************************/
 
-.form-container {
-	margin-left: auto;
-	margin-right: auto;
-	border: solid 2px var(--text-color-dark);
-	max-width: 669px;
-	border-radius: 5px;
-	margin-bottom: 10vh;
-}
-.email {
-	width: 100%;
-}
-.message {
-	float: none;
-}
-.name {
-	float: left;
-	width: 45%;
-}
-.underline {
-	border-bottom: solid 2px var(--text-color-dark);
-	margin: -0.5em auto;
-	width: 80px;
-}
-.subject {
-	width: 100%;
-}
-.telephone {
-	width: 45%;
-	float: right;
-}
-
-button {
-	overflow: visible;
-}
-
-button,
-select {
-	text-transform: none;
-}
-
-button,
-input,
-select,
-textarea {
-	color: var(--text-color-dark);
-	font: inherit;
-	margin: 0;
-}
-
-input {
-	line-height: normal;
-}
-
-textarea {
-	overflow: auto;
-}
-
-form {
-	padding: 37.5px;
-}
-
-input[type='text'],
-[type='email'],
-select,
-textarea {
-	background: none;
-	border: none;
-	border-bottom: solid 2px var(--text-color-dark);
-	color: var(--text-color-dark);
-	font-size: 0.7em;
-	font-weight: 400;
-	letter-spacing: 1px;
-	margin: 0em 0 1.5em 0;
-	padding: 0 0 0.5em 0;
-	text-transform: uppercase;
-	width: 100%;
-	transition: all 0.3s;
-}
-
-input[type='text']:focus,
-[type='email']:focus,
-textarea:focus {
-	outline: none;
-	padding: 0 0 0.5em 0;
-}
-
-textarea {
-	line-height: 150%;
-	height: 150px;
-	resize: none;
-	width: 100%;
-}
-
-#form_button {
-	background: none;
-	border: solid 2px var(--text-color-dark);
-	border-radius: 5px;
-	color: var(--text-color-dark);
-	cursor: pointer;
-	display: inline-block;
-	font-size: 0.7em;
-	font-weight: bold;
-	outline: none;
-	padding: 20px 35px;
-	text-transform: uppercase;
-	transition: all 0.3s;
-}
-
-#form_button:hover {
-	background: var(--primary);
-	color: var(--text-color);
-}
-@media screen and (max-width: 680px) {
-	.form-container {
-		margin-left: 1rem;
-		margin-right: 1rem;
-	}
-}
-@media screen and (max-width: 480px) {
-	.form-container {
-		margin-left: 1rem;
-		margin-right: 1rem;
-	}
-	.underline {
-		width: 68px;
-	}
-	#form_button {
-		padding: 15px 25px;
-	}
-}
-
-@media screen and (max-width: 420px) {
-	.form-container {
-		margin-left: 1rem;
-		margin-right: 1rem;
-	}
-	.underline {
-		width: 53px;
-	}
-
-	input[type='text'],
-	[type='email'],
-	select,
-	textarea {
-		font-size: 0.875em;
-	}
-}
 .error-p {
 	text-align: center;
 }
