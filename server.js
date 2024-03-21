@@ -45,8 +45,8 @@ app.get('/guestbook', async (req, res) => {
 			'<th scope="row">#</th>' +
 			'<th scope="col">Name</th>' +
 			'<th scope="col">Country</th>' +
-			'<th scope="col">Date</th>' +
 			'<th scope="col">Message</th>' +
+			'<th scope="col">Date</th>' +
 			'</tr>' +
 			'</thead>';
 

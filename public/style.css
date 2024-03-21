@@ -10,7 +10,7 @@
 
 :root {
 	--primary: linear-gradient(to top left, #8e0895 0%, #3d0569 100%);
-	--text-color: rgb(255, 255, 255);
+	--text-color-light: rgb(255, 255, 255);
 	--text-color-dark: rgb(0, 0, 0);
 	--app: linear-gradient(to bottom left, #919191 0%, #5a5a5a 100%);
 	--primary-app: linear-gradient(to bottom left, #919191 0%, #5a5a5a 100%);
@@ -28,6 +28,7 @@ form {
 	background: none;
 	cursor: initial;
 	text-decoration: none;
+	line-height: normal;
 }
 
 /* Change Autocomplete styles in Chrome*/
@@ -61,20 +62,51 @@ body::-webkit-scrollbar {
 	text-shadow: 1px 1px 2px var(--shadow);
 }
 
+/* Background for website elements */
+
+nav,
+.footer {
+	background: var(--primary);
+}
+
+/********** BASIC MAIN STYLING **********/
+
+.basic-container {
+	width: 60%;
+	margin-bottom: 10vh;
+}
+
+.center,
+.center h3 {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.center-text {
+	text-align: center;
+}
 /******************** NAVIGATION STYLING ********************/
-nav {
+
+nav,
+.nav-links {
 	display: flex;
+}
+
+.logo h4,
+.nav-links a {
+	color: var(--text-color-light);
+	text-transform: uppercase;
+}
+
+nav {
 	justify-content: center;
 	align-items: center;
 	min-height: 7vh;
-	background: var(--primary);
 	position: fixed;
 	width: 100%;
 	top: 0;
 }
 .logo h4 {
-	color: var(--text-color);
-	text-transform: uppercase;
 	letter-spacing: 3px;
 	font-size: 1.25rem;
 	margin: 0;
@@ -87,7 +119,6 @@ nav {
 	left: 5rem;
 }
 .nav-links {
-	display: flex;
 	justify-content: space-around;
 	min-width: 30%;
 	list-style: none;
@@ -96,20 +127,23 @@ nav {
 	line-height: 1;
 }
 .nav-links a {
-	color: var(--text-color);
 	text-decoration: none;
 	letter-spacing: 3px;
 	font-size: 0.8rem;
 	font-weight: 300;
 	margin: 0.8rem;
 	position: relative;
-	text-transform: uppercase;
 }
+
+.nav-links a::before,
+.burger div {
+	background: var(--text-color-light);
+}
+
 .nav-links a::before {
 	content: '';
 	display: block;
 	height: 3px;
-	background: var(--text-color);
 	position: absolute;
 	top: -0.35em;
 	left: 0;
@@ -133,7 +167,6 @@ nav {
 .burger div {
 	width: 25px;
 	height: 3px;
-	background: var(--text-color);
 	margin: 5px;
 	transition: all 0.3s ease;
 }
@@ -161,7 +194,6 @@ nav {
 		height: 93vh;
 		top: 7vh;
 		background: var(--primary);
-		display: flex;
 		flex-direction: column;
 		padding-left: 7vw;
 		padding-right: 7vw;
@@ -208,9 +240,10 @@ nav {
 	transform: rotate(45deg) translate(-4px, -6px);
 }
 
-/******************** HEADER STYLING ********************/
+/******************** MAIN HEADER STYLING ********************/
 
-.x-header h3 {
+.x-header h3,
+.g-header h3 {
 	font-size: 1.6em;
 	margin: 9vh 0 0.5em 0;
 	text-align: center;
@@ -218,17 +251,30 @@ nav {
 	border-bottom: 2px solid var(--text-color-dark);
 	padding-bottom: 0.2em;
 	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
+	line-height: 1;
+}
+
+.x-header h3 {
+	margin: 9vh 0 0.5em 0;
+	width: 50%;
 	line-height: 1;
 }
 .x-header span {
 	font-weight: 100;
 }
 
+.g-header h3 {
+	border-bottom: 2px solid var(--text-color-dark);
+	font-size: 1.6em;
+	font-weight: 900;
+	margin: 0.5em 0 0.5em 0;
+	text-align: center;
+	padding-bottom: 0.2em;
+	width: 50%;
+}
+
 /******************** FOOTER STYLING ********************/
 .footer {
-	background: var(--primary);
 	height: 2rem;
 	position: fixed;
 	width: 100%;
@@ -243,20 +289,16 @@ main {
 	padding-top: 7vh;
 }
 .footer-text {
-	color: var(--text-color);
+	color: var(--text-color-light);
 	font-size: 10px;
 	text-align: center;
 	font-weight: 100;
+	margin: 0;
+	line-height: normal;
 }
 
 /********** INDEX PAGE **********/
 
-.index-container {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 10vh;
-}
 .main-index {
 	display: grid;
 	grid-gap: 1em;
@@ -368,12 +410,6 @@ main {
 }
 /********** BIKES PAGE **********/
 
-.bike-container {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 10vh;
-}
 .main-bike {
 	display: grid;
 	grid-gap: 1em;
@@ -388,8 +424,12 @@ main {
 	width: 100%;
 	border-radius: 5px;
 }
+
 .bike-container p {
 	font-size: 1em;
+}
+.bike-container h5 {
+	font-size: 1.12em;
 }
 .bike-photo1 {
 	grid-area: bike1;
@@ -408,12 +448,6 @@ main {
 }
 .bike-text3 {
 	grid-area: biketxt3;
-}
-.bike-container p {
-	font-size: 0.885em;
-}
-.bike-container h5 {
-	font-size: 1.12em;
 }
 
 @media only screen and (max-width: 1078px) {
@@ -457,17 +491,13 @@ main {
 	}
 }
 
-/******************** NATURE GALLERY ********************/
+/********** NATURE GALLERY **********/
+
 .img-container {
-	margin-bottom: 10vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
 }
 .img-container .box {
 	display: flex;
@@ -475,6 +505,7 @@ main {
 }
 .img-container .box .photos {
 	margin: 0.2em;
+	flex: 48%;
 }
 .img-container .box .photos img {
 	width: 100%;
@@ -483,16 +514,6 @@ main {
 @media only screen and (max-width: 600px) {
 	.img-container .box .photos {
 		flex: 100%;
-	}
-}
-@media only screen and (min-width: 600.1px) {
-	.img-container .box .photos {
-		flex: 48%;
-	}
-}
-@media only screen and (min-width: 800.1px) {
-	.img-container .box .photos {
-		flex: 48%;
 	}
 }
 
@@ -504,17 +525,11 @@ main {
 
 /******************** ABOUT ME PAGE ********************/
 
-.ab-container {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 10vh;
-}
 .main-about {
 	display: grid;
 	grid-gap: 2em;
-	grid-template-columns: repeat(3, 1fr);
 	padding-top: 1em;
+	grid-template-columns: repeat(3, 1fr);
 	grid-template-areas:
 		'ab1 ab2 ab3'
 		'abtxt1 abtxt1 abtxt1'
@@ -528,7 +543,6 @@ main {
 .ab-container p {
 	font-size: 2vh;
 }
-
 .ab-photo1 {
 	grid-area: ab1;
 }
@@ -587,12 +601,9 @@ main {
 /******************** CONTACT PAGE, NEW MESSAGE, AJAX MESSAGE PAGE STYLING ********************/
 
 .form-container {
-	margin-left: auto;
-	margin-right: auto;
 	border: solid 2px var(--text-color-dark);
 	max-width: 669px;
 	border-radius: 5px;
-	margin-bottom: 10vh;
 }
 .email {
 	width: 100%;
@@ -605,7 +616,6 @@ main {
 	width: 45%;
 }
 .underline {
-	border-bottom: solid 2px var(--text-color-dark);
 	margin: -0.5em auto;
 	width: 80px;
 }
@@ -624,6 +634,10 @@ button {
 button,
 select {
 	text-transform: none;
+}
+
+label {
+	display: block !important;
 }
 
 button,
@@ -655,11 +669,11 @@ textarea {
 	border: none;
 	border-bottom: solid 2px var(--text-color-dark);
 	color: var(--text-color-dark);
-	font-size: 0.7em;
+	font-size: 0.7em !important;
 	font-weight: 400;
 	letter-spacing: 1px;
-	margin: 0em 0 1.5em 0;
-	padding: 0 0 0.5em 0;
+	margin: 0em 0 1.5em 0 !important;
+	padding: 0 0 0.5em 0 !important;
 	text-transform: uppercase;
 	width: 100%;
 	transition: all 0.3s;
@@ -669,14 +683,13 @@ input[type='text']:focus,
 [type='email']:focus,
 textarea:focus {
 	outline: none;
-	padding: 0 0 0.5em 0;
+	padding: 0 0 0.5em 0 !important;
 }
 
 textarea {
-	line-height: 150%;
+	line-height: normal;
 	height: 150px;
 	resize: none;
-	width: 100%;
 }
 
 #form_button {
@@ -696,18 +709,18 @@ textarea {
 
 #form_button:hover {
 	background: var(--primary);
-	color: var(--text-color);
+	color: var(--text-color-light);
 }
 @media screen and (max-width: 680px) {
 	.form-container {
-		margin-left: 1rem;
-		margin-right: 1rem;
+		max-width: 660px;
+		width: 85%;
 	}
 }
 @media screen and (max-width: 480px) {
 	.form-container {
-		margin-left: 1rem;
-		margin-right: 1rem;
+		max-width: 460px;
+		width: 90%;
 	}
 	.underline {
 		width: 68px;
@@ -719,8 +732,9 @@ textarea {
 
 @media screen and (max-width: 420px) {
 	.form-container {
-		margin-left: 1rem;
-		margin-right: 1rem;
+		min-width: 380px;
+		max-width: 400px;
+		width: 95%;
 	}
 	.underline {
 		width: 53px;
@@ -732,6 +746,35 @@ textarea {
 	textarea {
 		font-size: 0.875em;
 	}
+}
+
+/******************** GUESTBOOK PAGE STYLING ********************/
+
+.guestbook {
+	border: solid 2px var(--text-color-dark);
+	border-radius: 5px;
+	max-width: 669px;
+	margin-bottom: 10vh;
+	padding: 1rem;
+}
+
+.guestbook-table {
+	padding: 1rem;
+}
+
+.g-header h3 {
+	border-bottom: 2px solid var(--text-color-dark);
+	font-size: 1.6em;
+	font-weight: 900;
+	margin: 0.5em 0 0.5em 0;
+	text-align: center;
+	padding-bottom: 0.2em;
+	width: 50%;
+}
+
+.message-cell {
+	max-width: 300px; /* Adjust the maximum width as needed */
+	word-wrap: break-word;
 }
 
 /********** WEATHER APP STYLING **********/
@@ -766,15 +809,13 @@ textarea {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	margin-left: auto;
-	margin-right: auto;
 	width: 30%;
 	padding: 1rem;
 	min-width: 300px;
 	max-width: 620px;
 	background: var(--primary-app);
 	border-radius: 25px;
-	color: var(--text-color);
+	color: var(--text-color-light);
 	margin-bottom: 3rem;
 	box-shadow: 0 6px 6px var(--shadow);
 }
@@ -786,7 +827,7 @@ textarea {
 .button-style,
 .input-style {
 	padding: 0.2rem;
-	color: var(--text-color);
+	color: var(--text-color-light);
 	display: flex;
 }
 
@@ -794,13 +835,13 @@ textarea {
 .input-style:-webkit-autofill,
 .input-style:-webkit-autofill:hover,
 .input-style:-webkit-autofill:focus {
-	-webkit-text-fill-color: var(--text-color);
+	-webkit-text-fill-color: var(--text-color-light);
 	border: none !important;
 	transition: background-color 9999s ease-in-out 0s;
 }
 
 .input-style::placeholder {
-	color: var(--text-color);
+	color: var(--text-color-light);
 	opacity: 0.5;
 }
 
@@ -815,7 +856,7 @@ textarea {
 #city {
 	font-size: 0.75rem;
 	margin-left: 1.35rem;
-	color: var(--text-color) !important;
+	color: var(--text-color-light) !important;
 }
 .button-style {
 	cursor: pointer;
@@ -855,7 +896,7 @@ textarea {
 #check24,
 #check72 {
 	display: inline !important;
-	color: var(--text-color);
+	color: var(--text-color-light);
 }
 
 #check24:hover,
@@ -928,43 +969,4 @@ textarea {
 	.search {
 		justify-content: center;
 	}
-}
-
-/******************** GUESTBOOK PAGE STYLING ********************/
-
-.guestbook {
-	margin-left: auto;
-	margin-right: auto;
-	border: solid 2px var(--text-color-dark);
-	max-width: 669px;
-	border-radius: 5px;
-	margin-bottom: 10vh;
-	padding: 1rem;
-}
-
-.guestbook-table {
-	padding: 1rem;
-}
-
-.g-header h3 {
-	font-size: 1.6em;
-	margin: 0.5em 0 0.5em 0;
-	text-align: center;
-	font-weight: 900;
-	border-bottom: 2px solid var(--text-color-dark);
-	padding-bottom: 0.2em;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.message-cell {
-	max-width: 300px; /* Adjust the maximum width as needed */
-	word-wrap: break-word;
-}
-
-/************************ ERROR PAGE STYLING ***************************/
-
-.error-p {
-	text-align: center;
 }
