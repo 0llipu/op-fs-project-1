@@ -1,9 +1,11 @@
-// LOAD MODULES
+// Load modules //
 
 var express = require('express');
 var app = express();
 const fs = require('fs').promises;
-// parse application/x-www-form-urlencoded
+
+// Initiate parsing for url-encoded and json data //
+
 const bodyParser = require('body-parser');
 
 app.use(
@@ -13,28 +15,30 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// DOT ENV MODULE
-const dotenv = require('dotenv').config();
-const PORT = dotenv.parsed.PORT01;
+// Initiate dotenv module //
 
-// STATIC FILES FROM PUBLIC DIR
+const dotenv = require('dotenv').config();
+const PORT = dotenv.parsed.PORT01 || PORT == 3000;
+
+// Load static files from public directory
+
 app.use(express.static('public'));
 
-// Route for /guestbook
+// Route for guestbook //
+
 app.get('/guestbook', async (req, res) => {
 	try {
-		// Read entries.json file and guestbook.html file asynchronously
-		const [jsonData, htmlContent] = await Promise.all([
+		// Read entries.json file and the guestbook.html page
+		const [entryData, guestbookPage] = await Promise.all([
 			fs.readFile('data/entries.json', 'utf8'),
 			fs.readFile('public/guestbook.html', 'utf8'),
 		]);
 
 		// Parse JSON data from entries.json
-		const entries = JSON.parse(jsonData);
+		const entries = JSON.parse(entryData);
 
-		// Generate HTML table dynamically
-
-		let htmlTable =
+		// Generate HTML table dynamically to show guestbook entries
+		let entryTable =
 			'<table id="guestbook-table" class="table table-bordered table-striped">' +
 			'<thead>' +
 			'<tr>' +
@@ -47,7 +51,7 @@ app.get('/guestbook', async (req, res) => {
 			'</thead>';
 
 		for (const entry of entries) {
-			htmlTable += `
+			entryTable += `
                 <tr>
                     <td>${entry.id}</td>
                     <td>${entry.username}</td>
@@ -57,38 +61,49 @@ app.get('/guestbook', async (req, res) => {
                 </tr>
             `;
 		}
-		htmlTable += '</table>';
+		entryTable += '</table>';
 
-		// Replace placeholder div content with HTML table
-		const modifiedHtml = htmlContent.replace(
+		// Replace placeholder div content with html table
+		const generatedGuestbook = guestbookPage.replace(
 			'<table id="guestbook-table" class="table table-bordered table-striped"></table>',
-			`<table id="guestbook-table" class="table table-bordered table-striped">${htmlTable}</table>`
+			`<table id="guestbook-table" class="table table-bordered table-striped">${entryTable}</table>`
 		);
 
-		// Send the modified HTML content as response
-		res.send(modifiedHtml);
+		// Send the modified html content as response
+		res.send(generatedGuestbook);
+
+		// Catch errors and inform about them
 	} catch (error) {
 		console.error('Error:', error.message);
-		res.status(500).send('Internal Server Error');
+		res.status(500).send(
+			'Internal Server Error, could not generate guestbook'
+		);
 	}
 });
-// lisätään GET polku (route) joka hakee /public/adduser.html tiedoston ja lähettää sen selaimeen
+
+// Route for new message html page
+
 app.get('/newmessage', function (req, res) {
 	res.sendFile(__dirname + '/public/newmessage.html');
 });
 
+// Route for posting the new message to the guestbook
+
 app.post('/newmessage', async (req, res) => {
 	try {
 		// Read existing entries from the file
-		const jsonData = await fs.readFile(
+		const entryData = await fs.readFile(
 			__dirname + '/data/entries.json',
 			'utf8'
 		);
-		const existingEntries = JSON.parse(jsonData);
 
-		// Get the form data from the request body
+		// Parse JSON data from entries.json
+		const existingEntries = JSON.parse(entryData);
+
+		// Get the form data from the html form on the newmessage.html page
 		const formData = req.body;
 
+		// Generate date string to a variable
 		const date =
 			new Date().getDate() +
 			'/' +
@@ -111,23 +126,29 @@ app.post('/newmessage', async (req, res) => {
 			JSON.stringify(existingEntries)
 		);
 
-		console.log('Form data saved successfully');
+		// Write to console information about saving the data successfully
+		console.log('New message data saved successfully!');
+
+		// Redirect to the messagesent.html page
 		res.redirect('/messagesent.html');
+
+		// Catch errors and inform about them
 	} catch (error) {
 		console.error('Error saving form data:', error);
-		res.status(500).send('Error saving form data');
+		res.status(500).send('Error saving the new message form data');
 	}
 });
 
-// Route handler for submitting the form data
+// Route for handling the Ajax message //
+
 app.post('/submitAjaxMessage', async (req, res) => {
 	try {
-		// Read existing entries from the file
-		const jsonData = await fs.readFile(
+		// Read existing entries from the entries.json file
+		const entryData = await fs.readFile(
 			__dirname + '/data/entries.json',
 			'utf8'
 		);
-		const existingEntries = JSON.parse(jsonData);
+		const existingEntries = JSON.parse(entryData);
 
 		// Get the form data from the request body
 		const formData = req.body;
@@ -141,41 +162,57 @@ app.post('/submitAjaxMessage', async (req, res) => {
 		// Append the new form data to the existing entries
 		existingEntries.push(entryWithId);
 
-		// Write the updated entries back to the file
+		// Write the updated entries back to the entries.json file
 		await fs.writeFile(
 			__dirname + '/data/entries.json',
 			JSON.stringify(existingEntries)
 		);
 
-		console.log('Form data saved successfully');
+		// Write to console information about saving the data successfully
+		console.log('Ajax Message data saved successfully');
+
+		// Send information back to client about success as a JSON response
 		res.json({ success: true });
+
+		// Catch errors and inform about them
 	} catch (error) {
 		console.error('Error saving form data:', error);
-		res.status(500).send('Error saving form data');
+		res.status(500).send('Error saving the ajax message form data');
 	}
 });
+
+// Route for the Guestbook on the ajax message page //
 
 app.get('/ajaxGuestbook', async (req, res) => {
 	try {
-		// Read entries.json file and guestbook.html file asynchronously
-		const jsonData = await fs.readFile(
+		// Read existing entries from the entries.json file
+		const entryData = await fs.readFile(
 			__dirname + '/data/entries.json',
 			'utf8'
 		);
-		const entries = JSON.parse(jsonData);
+		const entries = JSON.parse(entryData);
+
+		// Send response back to client
 		res.json(entries);
+
+		// Catch errors and inform about them
 	} catch (error) {
 		console.error('Error:', error.message);
-		res.status(500).send('Internal Server Error');
+		res.status(500).send(
+			'Could not generate the guestbook to the Ajax message page'
+		);
 	}
 });
-//The 404 Route (ALWAYS Keep this as the last route)
+
+// Error route //
+
 app.get('*', function (req, res) {
-	//res.send('Cant find the requested page', 404);
+	// Bring up the error page
 	res.sendFile(__dirname + '/public/error.html');
 });
 
-// käynnistetään palvelin kuuntelemaan valittua porttia
+// Start the server and listen to a specific port //
+
 app.listen(PORT, function () {
-	console.log('Example 02 app listening on port: ' + PORT);
+	console.log('Website is running and listening on port: ' + PORT);
 });

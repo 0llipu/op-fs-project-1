@@ -80,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				.then((data) => {
 					console.log('Form submitted successfully:', data);
 					// Here you can handle the response from the backend, such as displaying a success message to the user
-					ajaxForm.reset();
 					fetchGuestbookData(); // Fetch guestbook data after form submission is successful
+					ajaxForm.reset();
 				})
 				.catch((error) => {
 					console.error('Error:', error.message);
