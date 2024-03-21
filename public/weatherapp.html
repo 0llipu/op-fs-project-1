@@ -1,0 +1,115 @@
+<html lang="en">
+
+	<!-- Head Element with defaults, font link, stylesheet link and the website title icon svg link -->
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<link href="images/thermometer-sun-dark.svg" rel="icon" media="(prefers-color-scheme: light)">
+		<link href="images/thermometer-sun-light.svg" rel="icon" media="(prefers-color-scheme: dark)">
+		<link href="style.css" type="text/css" rel="stylesheet" />
+		<title>Project Web Site - WeatherApp</title>
+	</head>
+	<!-- Head ends -->
+
+	<!-- Body Element with container for the app, SVGs used for the location and search buttons-->
+	<body>
+		<nav>
+			<div class="logo">
+				<h4>P & L O P</h4>
+			</div>
+			<ul class="nav-links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="bikes.html">Bikes</a></li>
+				<li><a href="nature.html">Nature</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="contact.html">Contact</a></li>
+				<li><a href="weatherapp.html">WeatherApp</a></li>
+				<li><a href="guestbook">Guestbook</a></li>
+				<li><a href="newmessage">NewMessage</a></li>
+				<li><a href="ajaxmessage.html">AjaxMessage</a></li>
+			</ul>
+			<div class="burger">
+				<div class="line1"></div>
+				<div class="line2"></div>
+				<div class="line3"></div>
+			</div>
+		</nav>
+		<!-- Container is divided to the left-section that is always visible and the right section is showed when user wants to see the weather forecast-->
+		<div class="container" id="container">
+			<!-- This left section is always visible -->
+			<div class="left">
+				<!-- Location-section to search by city or current location-->
+				<div class="search">
+					<form class="form-style" id="input">
+						<button class="button-style" type="button" id="currentLocation"><svg
+								xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+								class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+								<path
+									d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+							</svg></button>
+						<input class="input-style" type="text" id="city" name="city" size="26"
+							placeholder="Search for a city..">
+						<button class="button-style" type="submit" id="submit"><svg xmlns="http://www.w3.org/2000/svg"
+								width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+								<path
+									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+							</svg></button>
+					</form>
+				</div>
+				<!-- Location info section-->
+				<div id="location">
+					<h1 class="header-1">Location coordinates</h1>
+					<p class="paragraph">No Coordinates</p>
+				</div>
+				<!-- Location info ends -->
+				<!-- Current weather section -->
+				<h1 class="header-1">Current weather</h1>
+				<div id="weather">
+					<div class="current">
+						<div>
+							<p id="temp" class="temp"></p>
+						</div>
+						<div id="weatherIcon"></div>
+					</div>
+					<div id="weatherInfo">
+						<h3 class="header-3">Weather station details</h3>
+						<p class="paragraph" id="cityName">No City Data</p>
+						<p class="paragraph" id="weatherData">No Weather Data</p>
+					</div>
+				</div>
+				<!-- Current weather section ends -->
+				<!-- Forecast buttons that activate the right side with either 24h or 24-72h info -->
+				<div id="forecast">
+					<h3 class="header-3">Weather Forecast</h3>
+					<button id="check24">Next 24h</button><span> </span><button id="check72">24h to 72h</button>
+				</div>
+				<!-- Forecast button section ends -->
+			</div>
+			<!-- Left section ends -->
+			<!-- This right section is visible when user wants to see the weather forecast-->
+			<div class="right" id="right">
+				<div id="forecastList">
+				</div>
+			</div>
+			<!-- Right section ends -->
+		</div>
+
+		<!-- Container ends-->
+
+
+		<footer>
+			<div class="footer">
+				<h5>© Olli Puustinen</h5>
+			</div>
+		</footer>
+		<!-- script source for the Javascript -->
+		<script src="weatherapp.js"></script>
+		<script src="nav.js"></script>
+	</body>
+	<!-- Body ends -->
+</html>

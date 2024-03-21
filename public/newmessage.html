@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="style.css" type="text/css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+        <title>Project Web Site - New Message</title>
+    </head>
+    <body>
+        <nav>
+            <div class="logo">
+                <h4>P & L O P</h4>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="bikes.html">Bikes</a></li>
+                <li><a href="nature.html">Nature</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="weatherapp.html">WeatherApp</a></li>
+                <li><a href="guestbook">Guestbook</a></li>
+                <li><a href="newmessage">NewMessage</a></li>
+                <li><a href="ajaxmessage.html">AjaxMessage</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+        <div class="x-header">
+            <h3>New<span>Message</span></h3>
+        </div>
+        <div class="form-container">
+            <form action="/newmessage" method="post" id="message_form">
+                <div class="username">
+                    <label for="username"></label>
+                    <input type="text" placeholder="Enter username.." name="username" id="username" required />
+                </div>
+                <div class="country">
+                    <label for="country"></label>
+                    <input type="text" placeholder="Enter country.." name="country" id="country" required />
+                </div>
+                <div class="message">
+                    <label for="message"></label>
+                    <textarea name="message" placeholder="I'd like to tell you..." id="message" cols="30" rows="5"
+                        required></textarea>
+                </div>
+                <div class="submitNewMessage">
+                    <input type="submit" value="Send New Message" id="form_button" />
+                </div>
+            </form>
+        </div>
+        <footer>
+            <div class="footer">
+                <h5>© Olli Puustinen</h5>
+            </div>
+        </footer>
+        <script src="nav.js"></script>
+    </body>
+</html>
