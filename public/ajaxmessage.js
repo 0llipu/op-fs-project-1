@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${entry.id}</td>
                     <td>${entry.username}</td>
                     <td>${entry.country}</td>
-                    <td>${entry.message}</td>
+                    <td class="message-cell">${entry.message}</td>
                     <td>${entry.date}</td>
                 </tr>
             `;
@@ -38,54 +38,55 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 	fetchGuestbookData(); // Fetch guestbook data after form submission is successful
 
-	document
-		.getElementById('ajaxmessage-form')
-		.addEventListener('submit', function (event) {
-			event.preventDefault();
+	ajaxForm = document.getElementById('ajaxmessage-form');
 
-			const date =
-				new Date().getDate() +
-				'/' +
-				(1 + parseInt(new Date().getMonth())) +
-				'/' +
-				new Date().getFullYear();
-			// Create an object to hold form data
-			const formData = {
-				username: document.getElementById('username').value,
-				country: document.getElementById('country').value,
-				message: document.getElementById('message').value,
-				date: date,
-			};
+	ajaxForm.addEventListener('submit', function (event) {
+		event.preventDefault();
 
-			if (username === '' || country === '' || message === '') {
-				alert('Please fill in all fields');
-				return;
-			} else {
-				// Convert form data object to JSON
-				const jsonData = JSON.stringify(formData);
+		const date =
+			new Date().getDate() +
+			'/' +
+			(1 + parseInt(new Date().getMonth())) +
+			'/' +
+			new Date().getFullYear();
+		// Create an object to hold form data
+		const formData = {
+			username: document.getElementById('username').value,
+			country: document.getElementById('country').value,
+			message: document.getElementById('message').value,
+			date: date,
+		};
 
-				fetch('/submitAjaxMessage', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: jsonData,
+		if (username === '' || country === '' || message === '') {
+			alert('Please fill in all fields');
+			return;
+		} else {
+			// Convert form data object to JSON
+			const jsonData = JSON.stringify(formData);
+
+			fetch('/submitAjaxMessage', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: jsonData,
+			})
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error('Failed to submit form');
+					}
+					return response.json();
 				})
-					.then((response) => {
-						if (!response.ok) {
-							throw new Error('Failed to submit form');
-						}
-						return response.json();
-					})
-					.then((data) => {
-						console.log('Form submitted successfully:', data);
-						// Here you can handle the response from the backend, such as displaying a success message to the user
-						fetchGuestbookData(); // Fetch guestbook data after form submission is successful
-					})
-					.catch((error) => {
-						console.error('Error:', error.message);
-						// Here you can handle errors, such as displaying an error message to the user
-					});
-			}
-		});
+				.then((data) => {
+					console.log('Form submitted successfully:', data);
+					// Here you can handle the response from the backend, such as displaying a success message to the user
+					ajaxForm.reset();
+					fetchGuestbookData(); // Fetch guestbook data after form submission is successful
+				})
+				.catch((error) => {
+					console.error('Error:', error.message);
+					// Here you can handle errors, such as displaying an error message to the user
+				});
+		}
+	});
 });

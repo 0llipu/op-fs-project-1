@@ -52,7 +52,7 @@ app.get('/guestbook', async (req, res) => {
                     <td>${entry.id}</td>
                     <td>${entry.username}</td>
                     <td>${entry.country}</td>
-                    <td>${entry.message}</td>
+                    <td class="message-cell">${entry.message}</td>
                     <td>${entry.date}</td>
                 </tr>
             `;

@@ -958,6 +958,11 @@ textarea {
 	margin-right: auto;
 }
 
+.message-cell {
+	max-width: 300px; /* Adjust the maximum width as needed */
+	word-wrap: break-word;
+}
+
 /******************** NEW MESSAGE ********************/
 
 .form-container {
