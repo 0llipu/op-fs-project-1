@@ -35,7 +35,7 @@ app.get('/guestbook', async (req, res) => {
 		// Generate HTML table dynamically
 
 		let htmlTable =
-			'<table id="guestbook-table" class="table table-striped table-borderless">' +
+			'<table id="guestbook-table" class="table table-bordered table-striped">' +
 			'<thead>' +
 			'<tr>' +
 			'<th scope="row">#</th>' +
@@ -61,8 +61,8 @@ app.get('/guestbook', async (req, res) => {
 
 		// Replace placeholder div content with HTML table
 		const modifiedHtml = htmlContent.replace(
-			'<table id="guestbook-table" class="table table-striped table-borderless"></table>',
-			`<table id="guestbook-table" class="table table-striped table-borderless">${htmlTable}</table>`
+			'<table id="guestbook-table" class="table table-bordered table-striped"></table>',
+			`<table id="guestbook-table" class="table table-bordered table-striped">${htmlTable}</table>`
 		);
 
 		// Send the modified HTML content as response

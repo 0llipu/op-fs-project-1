@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			.then((response) => response.json()) // Parse response as JSON
 			.then((entries) => {
 				let htmlContent =
-					'<table>' +
+					'<table class="table table-bordered table-striped">' +
 					'<thead>' +
 					'<tr>' +
 					'<th scope="row">#</th>' +
