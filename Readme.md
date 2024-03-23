@@ -5,3 +5,4 @@ Ala rakentamaan sen pohjalle guestbookkia
 
 1. Asenna express, dotenv, nodemon
 2. Tee serveri node.js:llä
+   TEST
