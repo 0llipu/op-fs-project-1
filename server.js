@@ -214,7 +214,7 @@ app.get('*', function (req, res) {
 	res.sendFile(__dirname + '/public/error.html');
 });
 
-// Start the server and listen to a specific port //
+/// Start the server and listen to a specific port ///
 
 app.listen(PORT, function () {
 	console.log('Website is running and listening on port: ' + PORT);
