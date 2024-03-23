@@ -728,7 +728,7 @@ textarea {
 .wa-container {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 	width: 30%;
 	padding: 1rem;
 	min-width: 300px;
@@ -813,6 +813,15 @@ textarea {
 	display: flex !important;
 }
 /* Forecast info for coming weather styling */
+.left {
+	margin-left: 2rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+.right {
+	margin-right: 2rem;
+	padding-bottom: 1rem;
+}
 .right {
 	display: none;
 	font-size: 0.7rem;
@@ -828,6 +837,7 @@ textarea {
 .right div {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 .right h3 {
 	font-weight: 300;
