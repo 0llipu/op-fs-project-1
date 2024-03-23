@@ -39,7 +39,6 @@ app.get('/guestbook', async (req, res) => {
 
 		// Generate HTML table dynamically to show guestbook entries
 		let entryTable =
-			'<table id="guestbook-table" class="table table-bordered table-striped">' +
 			'<thead>' +
 			'<tr>' +
 			'<th scope="row">#</th>' +
@@ -61,7 +60,6 @@ app.get('/guestbook', async (req, res) => {
                 </tr>
             `;
 		}
-		entryTable += '</table>';
 
 		// Replace placeholder div content with html table
 		const generatedGuestbook = guestbookPage.replace(

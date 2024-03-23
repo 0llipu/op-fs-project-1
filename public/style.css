@@ -5,9 +5,7 @@
 	box-sizing: border-box;
 	font-family: 'Montserrat', sans-serif;
 }
-
 /* Variables for colors */
-
 :root {
 	--primary: linear-gradient(to top left, #8e0895 0%, #3d0569 100%);
 	--text-color-light: rgb(255, 255, 255);
@@ -15,10 +13,10 @@
 	--app: linear-gradient(to bottom left, #919191 0%, #5a5a5a 100%);
 	--primary-app: linear-gradient(to bottom left, #919191 0%, #5a5a5a 100%);
 	--shadow: rgb(180, 180, 180);
+	--dark-shadow: rgb(0, 0, 0);
 }
-
 /* Resets for universal default styling, makes it easier to do own styling*/
-
+body,
 input,
 button,
 form {
@@ -30,7 +28,6 @@ form {
 	text-decoration: none;
 	line-height: normal;
 }
-
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -41,13 +38,15 @@ textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
+select:-webkit-autofill:focus,
+.input-style,
+.input-style:-webkit-autofill,
+.input-style:-webkit-autofill:hover,
+.input-style:-webkit-autofill:focus {
 	background-clip: text;
 	transition: background-color 9999s ease-in-out 0s;
 }
-
 /* Hide scrollbar */
-
 body {
 	overflow-y: scroll;
 	-ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -55,59 +54,51 @@ body {
 body::-webkit-scrollbar {
 	display: none;
 }
-
-/* Shadows for text */
-
-.text-shadow {
-	text-shadow: 1px 1px 2px var(--shadow);
-}
-
 /* Background for website elements */
-
 nav,
 .footer {
 	background: var(--primary);
 }
+nav,
+.footer {
+	width: 100%;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+}
+nav,
+.nav-links,
+.footer {
+	display: flex;
+}
 
 /********** BASIC MAIN STYLING **********/
-
 .basic-container {
 	width: 60%;
 	margin-bottom: 10vh;
 }
-
 .center,
 .center h3 {
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
-
+/* For error and message sent page centering text. */
 .center-text {
 	text-align: center;
 }
-/******************** NAVIGATION STYLING ********************/
 
-nav,
-.nav-links {
-	display: flex;
-}
-
+/******************** NAVIGATION BAR & LOGO STYLING ********************/
 .logo h4,
 .nav-links a {
 	color: var(--text-color-light);
 	text-transform: uppercase;
+	letter-spacing: 3px;
 }
-
 nav {
-	justify-content: center;
-	align-items: center;
 	min-height: 7vh;
-	position: fixed;
-	width: 100%;
 	top: 0;
 }
 .logo h4 {
-	letter-spacing: 3px;
 	font-size: 1.25rem;
 	margin: 0;
 	font-weight: 200;
@@ -115,8 +106,11 @@ nav {
 .logo {
 	min-width: 8rem;
 	margin-left: 2rem;
-	position: absolute;
 	left: 5rem;
+}
+.logo,
+.nav-links a::before {
+	position: absolute;
 }
 .nav-links {
 	justify-content: space-around;
@@ -124,27 +118,22 @@ nav {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	line-height: normal;
 }
 .nav-links a {
 	text-decoration: none;
-	letter-spacing: 3px;
 	font-size: 0.8rem;
 	font-weight: 300;
 	margin: 0.8rem;
 	position: relative;
 }
-
 .nav-links a::before,
 .burger div {
 	background: var(--text-color-light);
 }
-
 .nav-links a::before {
 	content: '';
 	display: block;
 	height: 3px;
-	position: absolute;
 	top: -0.35em;
 	left: 0;
 	right: 0;
@@ -170,7 +159,6 @@ nav {
 	margin: 5px;
 	transition: all 0.3s ease;
 }
-
 @media screen and (max-width: 1600px) {
 	nav {
 		justify-content: space-around;
@@ -188,26 +176,27 @@ nav {
 		margin: 8px 0px 0px 8px !important;
 		align-items: center;
 	}
-	.nav-links {
+	.nav-links,
+	.burger {
 		position: absolute;
+	}
+	.nav-links {
 		right: 0px;
 		height: 93vh;
 		top: 7vh;
-		background: var(--primary);
 		flex-direction: column;
-		padding-left: 7vw;
-		padding-right: 7vw;
+		padding-left: 5vw;
+		padding-right: 5vw;
 		justify-content: flex-start;
+		background: var(--primary);
 	}
 	.nav-links li {
 		opacity: 0;
 		margin-top: 20px;
 		margin-bottom: 20px;
 	}
-
 	.burger {
 		display: block;
-		position: absolute;
 		right: 10px;
 	}
 	.nav-active {
@@ -219,7 +208,6 @@ nav {
 		transition: transform 0.5s ease-out;
 	}
 }
-
 @keyframes navLinkFade {
 	from {
 		opacity: 0;
@@ -241,48 +229,27 @@ nav {
 }
 
 /******************** MAIN HEADER STYLING ********************/
-
 .x-header h3,
 .g-header h3 {
-	font-size: 1.6em;
-	margin: 9vh 0 0.5em 0;
-	text-align: center;
-	font-weight: 900;
 	border-bottom: 2px solid var(--text-color-dark);
+	font-weight: 900;
 	padding-bottom: 0.2em;
+	text-align: center;
 	width: 50%;
-	line-height: normal;
 }
-
 .x-header h3 {
 	margin: 9vh 0 0.5em 0;
-	width: 50%;
-	line-height: normal;
-}
-.x-header span {
-	font-weight: 100;
-}
-
-.g-header h3 {
-	border-bottom: 2px solid var(--text-color-dark);
 	font-size: 1.6em;
-	font-weight: 900;
-	margin: 0.5em 0 0.5em 0;
-	text-align: center;
-	padding-bottom: 0.2em;
-	width: 50%;
+}
+.x-header span,
+.g-header span {
+	font-weight: 100;
 }
 
 /******************** FOOTER STYLING ********************/
 .footer {
 	height: 2rem;
-	position: fixed;
-	width: 100%;
 	bottom: 0;
-	box-sizing: border-box;
-	justify-content: center;
-	align-items: center;
-	display: flex;
 }
 main {
 	padding-bottom: 30px;
@@ -294,7 +261,6 @@ main {
 	text-align: center;
 	font-weight: 100;
 	margin: 0;
-	line-height: normal;
 }
 
 /********** INDEX PAGE **********/
@@ -333,23 +299,23 @@ main {
 	grid-area: indextxt3;
 }
 
-.main-index a {
-	color: rgb(41, 0, 79);
-	font-weight: 600;
-	text-decoration: none;
+.main-index a,
+.main-index a::before {
 	position: absolute;
 	display: block;
 }
+.main-index a {
+	color: var(--text-color-dark);
+	font-weight: 600;
+	text-decoration: none;
+}
 .main-index a:hover {
-	font-weight: 900;
-	text-shadow: 1px 1px var(--shadow);
+	opacity: 0.8;
 }
 .main-index a::before {
 	content: '';
-	display: block;
-	height: 2px;
+	height: 1.5px;
 	background: var(--primary);
-	position: absolute;
 	bottom: -0.35em;
 	left: 0;
 	right: 0;
@@ -419,12 +385,10 @@ main {
 		'bike1 bike2 bike3'
 		'biketxt1 biketxt2 biketxt3';
 }
-
 .bike-container img {
 	width: 100%;
 	border-radius: 5px;
 }
-
 .bike-container p {
 	font-size: 1em;
 }
@@ -449,7 +413,6 @@ main {
 .bike-text3 {
 	grid-area: biketxt3;
 }
-
 @media only screen and (max-width: 1078px) {
 	.main-bike {
 		grid-template-columns: repeat(4, 1fr);
@@ -516,7 +479,6 @@ main {
 		flex: 100%;
 	}
 }
-
 @media only screen and (min-width: 1024px) {
 	.img-container .box .photos {
 		flex: 23%;
@@ -524,7 +486,6 @@ main {
 }
 
 /******************** ABOUT ME PAGE ********************/
-
 .main-about {
 	display: grid;
 	grid-gap: 2em;
@@ -535,7 +496,6 @@ main {
 		'abtxt1 abtxt1 abtxt1'
 		'abtxt2 abtxt2 abtxt2';
 }
-
 .ab-container img {
 	width: 100%;
 	border-radius: 5px;
@@ -558,7 +518,6 @@ main {
 .ab-text2 {
 	grid-area: abtxt2;
 }
-
 @media only screen and (max-width: 1024px) {
 	.main-about {
 		grid-template-columns: repeat(3, 1fr);
@@ -581,9 +540,7 @@ main {
 			'abtxt1'
 			'abtxt2';
 	}
-	.ab-photo2 {
-		display: none;
-	}
+	.ab-photo2,
 	.ab-photo3 {
 		display: none;
 	}
@@ -599,11 +556,11 @@ main {
 }
 
 /******************** CONTACT PAGE, NEW MESSAGE, AJAX MESSAGE PAGE STYLING ********************/
-
 .form-container {
 	border: solid 2px var(--text-color-dark);
 	max-width: 669px;
 	border-radius: 5px;
+	padding: 37.5px;
 }
 .email {
 	width: 100%;
@@ -626,20 +583,16 @@ main {
 	width: 45%;
 	float: right;
 }
-
 button {
 	overflow: visible;
 }
-
 button,
 select {
 	text-transform: none;
 }
-
 label {
 	display: block !important;
 }
-
 button,
 input,
 select,
@@ -648,65 +601,49 @@ textarea {
 	font: inherit;
 	margin: 0;
 }
-
-input {
-	line-height: normal;
-}
-
 textarea {
 	overflow: auto;
 }
-
-form {
-	padding: 37.5px;
-}
-
 input[type='text'],
-[type='email'],
+input[type='email'],
 select,
 textarea {
-	background: none;
 	border: none;
 	border-bottom: solid 2px var(--text-color-dark);
-	color: var(--text-color-dark);
-	font-size: 0.7em !important;
-	font-weight: 400;
+	font-weight: 300;
 	letter-spacing: 1px;
 	margin: 0em 0 1.5em 0 !important;
 	padding: 0 0 0.5em 0 !important;
-	text-transform: uppercase;
 	width: 100%;
+}
+input[type='text'],
+input[type='email'],
+select,
+textarea,
+#form_button {
+	background: none;
+	font-size: 0.7em !important;
+	text-transform: uppercase;
 	transition: all 0.3s;
 }
-
 input[type='text']:focus,
-[type='email']:focus,
+input[type='email']:focus,
 textarea:focus {
 	outline: none;
 	padding: 0 0 0.5em 0 !important;
 }
-
 textarea {
-	line-height: normal;
 	height: 150px;
 	resize: none;
 }
-
 #form_button {
-	background: none;
 	border: solid 2px var(--text-color-dark);
 	border-radius: 5px;
-	color: var(--text-color-dark);
+	font-weight: 600;
 	cursor: pointer;
 	display: inline-block;
-	font-size: 0.7em;
-	font-weight: bold;
-	outline: none;
 	padding: 20px 35px;
-	text-transform: uppercase;
-	transition: all 0.3s;
 }
-
 #form_button:hover {
 	background: var(--primary);
 	color: var(--text-color-light);
@@ -729,7 +666,6 @@ textarea {
 		padding: 15px 25px;
 	}
 }
-
 @media screen and (max-width: 420px) {
 	.form-container {
 		min-width: 380px;
@@ -739,7 +675,6 @@ textarea {
 	.underline {
 		width: 53px;
 	}
-
 	input[type='text'],
 	[type='email'],
 	select,
@@ -748,63 +683,40 @@ textarea {
 	}
 }
 
-/******************** GUESTBOOK PAGE STYLING ********************/
-
-.guestbook {
-	border: solid 2px var(--text-color-dark);
-	border-radius: 5px;
-	max-width: 669px;
-	margin-bottom: 10vh;
-	padding: 1rem;
-}
-
+/******************** GUESTBOOK STYLING ********************/
 .guestbook-table {
 	padding: 1rem;
 }
-
 .g-header h3 {
-	border-bottom: 2px solid var(--text-color-dark);
-	font-size: 1.6em;
-	font-weight: 900;
 	margin: 0.5em 0 0.5em 0;
-	text-align: center;
-	padding-bottom: 0.2em;
-	width: 50%;
+	font-size: 1.3em;
 }
-
 .message-cell {
-	max-width: 300px; /* Adjust the maximum width as needed */
+	max-width: 300px;
 	word-wrap: break-word;
 }
 
 /********** WEATHER APP STYLING **********/
-
-/* Universal styling for body */
-
+/* Headers & paragraphs */
 .header-1,
 .header-3,
 .paragraph {
 	margin-left: 0.3rem;
 }
-
 .header-1 {
 	font-size: 1rem;
 	margin-top: 0.3rem;
 	margin-bottom: 0.3rem;
 	font-weight: 100;
 }
-
 .header-3 {
 	font-size: 0.9rem;
 	font-weight: 100;
 }
-
 .paragraph {
 	font-size: 0.65rem;
 }
-
-/* Container styling */
-
+/* Main container and the form styling */
 .wa-container {
 	display: flex;
 	flex-direction: row;
@@ -819,10 +731,6 @@ textarea {
 	margin-bottom: 3rem;
 	box-shadow: 0 6px 6px var(--shadow);
 }
-
-/**************
-/* Button & Input field styling */
-
 .form-style,
 .button-style,
 .input-style {
@@ -830,141 +738,98 @@ textarea {
 	color: var(--text-color-light);
 	display: flex;
 }
-
 .input-style,
 .input-style:-webkit-autofill,
 .input-style:-webkit-autofill:hover,
 .input-style:-webkit-autofill:focus {
 	-webkit-text-fill-color: var(--text-color-light);
 	border: none !important;
-	transition: background-color 9999s ease-in-out 0s;
 }
-
 .input-style::placeholder {
 	color: var(--text-color-light);
 	opacity: 0.5;
 }
-
 .input-style[type='text'],
+#city,
 select,
 textarea {
-	margin: 0.25em 0 0.25em 0;
-	padding: 0 0 0.5em 0;
-	text-transform: uppercase;
-}
-
-#city {
-	font-size: 0.75rem;
-	margin-left: 1.35rem;
-	color: var(--text-color-light) !important;
+	margin: 0.25em 0 0.25em 0 !important;
 }
 .button-style {
 	cursor: pointer;
 }
-
 .button-style #submit {
 	margin-right: 0.4rem;
 }
-
 .input-style:hover,
 .button-style:hover {
 	opacity: 0.5;
 }
-
 .button-style:active {
 	opacity: 0.3;
 }
-
 .search {
 	display: flex;
 }
-
-/* Current weather styling */
-
+/* Current weather info section styling */
 .current {
 	display: flex;
 	text-align: left;
 	justify-content: center;
 	align-items: center;
 }
-
 .temp #temp .paragraph {
 	font-size: 3rem;
 	margin-left: 2rem;
 }
-
 #check24,
 #check72 {
 	display: inline !important;
 	color: var(--text-color-light);
 }
-
 #check24:hover,
 #check72:hover {
 	opacity: 0.5;
 }
-
-/* Adding margin between sections */
-
 #location,
 #forecast {
 	margin-top: 1rem;
 }
-
-/* Styling the right div & forecast section */
-
 .forecastWidth {
 	width: 60%;
 }
-
 .forecastMinWidth {
 	min-width: 600px;
 }
-
 .forecastDisplay {
 	display: flex !important;
 }
-
+/* Forecast info for coming weather styling */
 .right {
 	display: none;
 	font-size: 0.7rem;
 }
-
 .right .header-3 {
 	text-align: center;
 	margin-bottom: 1rem;
 }
-
 .right ul li {
 	list-style: none;
-	text-align: justify;
 }
-
 .right div {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
-
 .forecastImg {
 	margin-left: 0.25rem;
 }
-
-/* Responsiveness */
-
 @media only screen and (max-width: 620px) {
 	.container {
 		flex-direction: column;
 		align-items: center;
 		width: 90%;
 		min-width: 300px;
-	}
-
-	.right div {
-		justify-content: center;
-	}
-	.right {
-		margin-top: 1rem;
-		font-size: 0.7rem;
 	}
 	.search {
 		justify-content: center;
