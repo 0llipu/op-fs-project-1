@@ -815,17 +815,25 @@ textarea {
 }
 .right ul li {
 	list-style: none;
+	text-align: justify;
 }
 .right div {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+}
+.right h3 {
+	font-weight: 300;
+	text-align: center;
 }
 .forecastImg {
 	margin-left: 0.25rem;
 }
+.r-container {
+	margin: 1rem;
+	padding: 1rem;
+}
 @media only screen and (max-width: 620px) {
-	.container {
+	.wa-container {
 		flex-direction: column;
 		align-items: center;
 		width: 90%;
@@ -833,5 +841,8 @@ textarea {
 	}
 	.search {
 		justify-content: center;
+	}
+	.right {
+		margin-top: 1rem;
 	}
 }
