@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Initiate dotenv module //
 
 const dotenv = require('dotenv').config();
-const PORT = dotenv.parsed.PORT01;
+const PORT = dotenv.parsed.PORT01 || 3000;
 
 // Load static files from public directory
 
