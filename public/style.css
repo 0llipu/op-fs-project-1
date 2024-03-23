@@ -124,7 +124,7 @@ nav {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	line-height: 1;
+	line-height: normal;
 }
 .nav-links a {
 	text-decoration: none;
@@ -251,13 +251,13 @@ nav {
 	border-bottom: 2px solid var(--text-color-dark);
 	padding-bottom: 0.2em;
 	width: 50%;
-	line-height: 1;
+	line-height: normal;
 }
 
 .x-header h3 {
 	margin: 9vh 0 0.5em 0;
 	width: 50%;
-	line-height: 1;
+	line-height: normal;
 }
 .x-header span {
 	font-weight: 100;
