@@ -88,6 +88,14 @@ nav,
 }
 
 /******************** NAVIGATION BAR & LOGO STYLING ********************/
+.logo a {
+	color: var(--text-color-light);
+	text-decoration: none;
+}
+.logo a:hover,
+.logo a:active {
+	opacity: 0.5;
+}
 .logo h4,
 .nav-links a {
 	color: var(--text-color-light);
