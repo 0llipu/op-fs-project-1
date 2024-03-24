@@ -729,7 +729,7 @@ textarea {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	width: 20%;
+	width: 15%;
 	padding: 1rem;
 	min-width: 300px;
 	max-width: 620px;
@@ -804,7 +804,7 @@ textarea {
 	margin-top: 1rem;
 }
 .forecastWidth {
-	width: 60%;
+	width: 15%;
 }
 .forecastMinWidth {
 	min-width: 600px;
