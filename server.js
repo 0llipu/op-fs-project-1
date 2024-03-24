@@ -3,7 +3,6 @@
 var express = require('express');
 var app = express();
 const fs = require('fs').promises;
-const cors = require('cors');
 
 // Initiate parsing for url-encoded and json data //
 
@@ -15,10 +14,6 @@ app.use(
 	})
 );
 app.use(bodyParser.json());
-
-// Initiate cors module //
-
-app.use(cors());
 
 // Initiate dotenv module //
 
